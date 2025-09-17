@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agriculture Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7f6;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 1rem;
+      gap: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 1rem;
+      flex: 1 1 300px;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #4CAF50;
+    }
+    canvas {
+      max-width: 100%;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #e0e0e0;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Agriculture Dashboard</h1>
+  </header>
+
+  <div class="dashboard">
+    <div class="card">
+      <h2>Crop Statistics</h2>
+      <p><strong>Wheat:</strong> 1200 kg/ha</p>
+      <p><strong>Rice:</strong> 1350 kg/ha</p>
+      <p><strong>Corn:</strong> 980 kg/ha</p>
+    </div>
+
+    <div class="card">
+      <h2>Weather</h2>
+      <p><strong>Temperature:</strong> 27°C</p>
+      <p><strong>Humidity:</strong> 60%</p>
+      <p><strong>Rainfall:</strong> 10mm</p>
+    </div>
+
+    <div class="card">
+      <h2>Soil Moisture</h2>
+      <canvas id="moistureChart"></canvas>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Smart AgriTech Dashboard
+  </footer>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('moistureChart').getContext('2d');
+    const moistureChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Soil Moisture (%)',
+          data: [45, 50, 48, 52, 47, 49, 51],
+          borderColor: '#4CAF50',
+          backgroundColor: 'rgba(76, 175, 80, 0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
